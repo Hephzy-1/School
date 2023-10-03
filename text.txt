@@ -1,0 +1,386 @@
+const express = require('express')
+const server = express();
+
+server.use(express.json())
+
+let admin = []
+
+// admin = [{
+//   username: Tolu,
+//   password: passphrase,
+//   role: admin
+// }]
+
+let student = []
+let teacher = []
+let course = []
+
+// GENERAL
+// REGISTER
+server.post('/register-user', (req, res) => {
+  console.log(req.body);
+
+  const usernameExists = admin.some(user => user.username === req.body.username) 
+  const teach = teacher.some(user => user.username === req.body.username) 
+  const stud =   student.some(user => user.username === req.body.username);
+
+  if (usernameExists === "true") {
+    return res.status(400).json(`This admin already exists`)
+  } 
+  if (teach === "true") {
+    return res.status(400).json(`This teacher already exists`)
+  }
+  if (stud) {
+    return res.status(400).json(`This student already exists`)
+  }
+
+  if(req.body.role === "admin"){
+    admin.push(req.body)
+    return res.status(200).json('You are registered as an Admin')
+  }
+  else if (req.body.role === "teacher") {
+    teacher.push(req.body)
+    return res.status(200).json('You are registered as a Teacher')
+  }
+  else {
+    student.push(req.body)
+    return res.status(200).json('You are registered as a Student')
+  }
+
+  res.status(400).json("Invalid Role")
+});
+
+// LOGIN
+server.post('/login', (req, res) => {
+  let login = req.body;
+
+  if (req.body.role == "admin") {
+    for (let i = 0; i < admin.length; i++) {
+      if (admin[i].username == login.username && admin[i].password == login.password) {
+        return res.status(200).json('You have successfully logged in'); 
+      }
+    }
+  }
+
+  if (req.body.role == "teacher") { 
+    for (let i = 0; i < teacher.length; i++) {
+      if (teacher[i].username == login.username && teacher[i].password == login.password) {
+        return res.status(200).json('You have successfully logged in'); 
+      }
+    }
+  }
+
+  if (req.body.role == "student") {
+    for (let i = 0; i < student.length; i++) {
+      if (student[i].username == login.username && student[i].password == login.password) {
+        return res.status(200).json('You have successfully logged in'); 
+      }
+    }
+  }
+  res.status(400).json('Invalid Username or Password');
+});
+
+// RESET PASSWORDS
+server.post('/reset/:username', (req, res) => {
+  const resetUsername = req.params.username;
+  const newPassword = req.body.password;
+
+  if (req.body.role == "admin") {
+    for (let i = 0; i < admin.length; i++) {
+      if (admin[i].username == resetUsername) {
+        admin[i].password = newPassword
+        return res.status(200).json(`Password has successfully been changed`);
+      }
+    }
+  }
+
+  if (req.body.role == "teacher") {
+    for (let i = 0; i < teacher.length; i++) {
+      if (teacher[i].username == resetUsername) {
+        teacher[i].password = newPassword
+        return res.status(200).json(`Password has successfully been changed`);
+      }
+    }
+  }
+
+  if (req.body.role == "student") {
+    for (let i = 0; i < student.length; i++) {
+      if (student[i].username == resetUsername) {
+        student[i].password = newPassword
+        return res.status(200).json(`Password has successfully been changed`);
+      }
+    }
+  }
+  res.status(404).json('User not found');
+})
+
+// ADMINS
+// GET ADMINS
+server.get('/admin/:role', (req, res) => {
+  if (req.params.role === "admin") {
+    res.json(admin)
+  } 
+  res.json(`You don't have access`)
+})
+
+// GET STUDENTS
+server.get('/student/:role', (req, res) => {
+  console.log(req.params);
+  if (req.params.role === "admin") {
+    res.json(student)
+  }else {
+    res.json(`You cant view this`)
+  }
+});
+
+// REGISTER COURSE 
+
+/*
+TITLE
+CODE
+LEVEL
+*/
+
+server.post('/course', (req, res) => {
+  console.log(req.body);
+  const registedCourse = course.some(topic => topic.code === req.body.code)
+
+  if (req.body.role === "admin") {
+    if (registedCourse) {
+      res.status(400).json('This course already exists')
+    }
+    else {
+      course.push(req.body)
+    res.status(200).json('This course has successfully been created')
+    }
+  }
+})
+
+// DELETE COURSES
+server.delete('/courses/:role/:code', (req, res) => {
+  console.log(req.params);
+
+  const deleteCode = req.params.code
+  const deleteCourse = course.findIndex(topic => topic.code === deleteCode)
+  const deletedCourse = course.splice(deleteCourse, 1);
+  if (req.params.role === "admin") {
+
+    if (deleteCourse === -1) {
+      res.status(404).json('Course not found');
+    } else { 
+      res.status(200).json(`Course ${deleteCode} has been deleted`);
+    }
+  }
+  else {
+    res.json('Only admins can delete courses')
+  }
+  console.log(deletedCourse);
+})
+
+// GET COURSE
+server.get('/courses/:role', (req, res) => {
+  console.log(req.params);
+  if (req.params.role === "admin") {
+    res.json(course)
+  }
+});
+
+// DROP STUDENT 
+server.delete('/student/:role', (req, res) => {
+  console.log(req.params);
+  const removeStudent = req.params.username
+
+  const deleteStudent = student.findIndex(user => user.username === removeStudent)
+  const deletedStudent = student.splice(deleteStudent, 1);
+  if (req.params.role === "admin") {
+    if (deleteStudent === -1) {
+      res.status(404).json('Student not found');
+    } else {      
+      res.status(200).json(`This student ${removeStudent} has been deleted`);
+    }  
+  }
+  console.log(deletedStudent);
+})
+
+// GET TEACHERS AS AN ADMIN
+server.get('/teacher/:role', (req, res) => {
+  console.log(req.params);
+  if (req.params.role === "admin") {
+    res.json(teacher)
+  } else {
+    res.status(400).json("You don't have access")
+  }
+});
+
+// VIEW PARTICULAR ADMIN
+server.get('/admin/:role/:username', (req, res) => {
+  console.log(req.params);
+  const {role, username} = req.params
+
+  if (role === "admin") {
+    const user = admin.find(stu => stu.username === username)
+
+    if (user) {
+      return res.json(admin.user)
+    }
+    else {
+      return res.json(`Admin doesn't exist`)
+    }
+  }else {
+    return res.json(`You cant view this`)
+  }
+});
+
+// GET PARTICULAR STUDENT AS ADMIN
+server.get('/student/:role/:username', (req, res) => {
+  console.log(req.params);
+  const {role, username} = req.params
+
+  if (role === "admin") {
+    const user = student.find(stu => stu.username === username)
+
+    if (user) {
+      return res.json(student.user)
+    }
+    else {
+      return res.json(`Student doesn't exist`)
+    }
+  }else {
+    return res.json(`You cant view this`)
+  }
+});
+
+// GET PARTICULAR TEACHER AS ADMIN
+server.get('/teacher/:role/:username', (req, res) => {
+  console.log(req.params);
+  const {role, username} = req.params
+
+  if (role === "admin") {
+    const user = teacher.find(stu => stu.username === username)
+
+    if (user) {
+      return res.json(teacher.user)
+    }
+    else {
+      return res.json(`Teacher ${user} doesn't exist`)
+    }
+  }else {
+    return res.json(`You cant view this`)
+  }
+});
+
+// STUDENTS
+// ENROLL COURSES
+server.post('/enroll', (req, res) => {
+  const {username, code} = req.body;
+
+  if (req.body.role === "student") {
+    // To check if the course exists
+    const courseExists = course.some(course => course.code === code);
+
+    if (courseExists) {
+      // Check if the student is already enrolled in the course
+      const enroll = student.find(student => student.username === username);
+
+      if (!enroll.courses.includes(code)) {
+        // Enroll the student in the course
+        enroll.student.push(code);
+        res.status(200).json(`Student ${username} has been enrolled in course ${code}`);
+      }
+      res.status(400).json(`Student ${username} is already enrolled in course ${code}`);
+    } else {
+      res.status(404).json(`Course ${code} not found`);
+    }
+  } else {
+    res.status(400).json("Invalid Role");
+  }
+});
+
+// GET COURSES
+server.get('/courses/:role', (req, res) => {
+  console.log(req.params);
+  if (req.params.role === "student") {
+    res.json(course)
+  }
+});
+
+// GET STUDENTS AS student
+server.get('/student/:role/:username', (req, res) => {
+  console.log(req.params);
+  const {role, username} = req.params
+
+  if (role === "student") {
+    const user = student.find(stu => stu.username === username)
+
+    if (user) {
+      return res.json(student.user)
+    }
+    else {
+      return res.json(`Student doesn't exist`)
+    }
+  }else {
+    return res.json(`You cant view this`)
+  }
+});
+
+// TEACHERS
+// GET TEACHERS AS A TEACHER
+server.get('/teacher/:role', (req, res) => {
+  console.log(req.params);
+  if (req.params.role === "teacher") {
+    res.json(teacher)
+    }else {
+    res.status(400).json("You don't have access")
+  }
+});
+
+// GET COURSES AS A TEACHER
+server.get('/courses/:role', (req, res) => {
+  console.log(req.params);
+  if (req.params.role === "teacher") {
+    res.json(course)
+  }
+});
+
+// GET STUDENTS AS A TEACHER
+server.get('/student/:role', (req, res) => {
+  console.log(req.params);
+  if (req.params.role === "teacher") {
+    res.json(student)
+  }else {
+    res.json(`You cant view this`)
+  }
+});
+
+// GET PARTICULAR STUDENT 
+server.get('/student/:role/:username', (req, res) => {
+  console.log(req.params);
+  const {role, username} = req.params
+
+  if (role === "teacher") {
+    const user = student.find(stu => stu.username === username)
+
+    if (user) {
+      return res.json(student.user)
+    }
+    else {
+      return res.json(`Student doesn't exist`)
+    }
+  }else {
+    return res.json(`You cant view this`)
+  }
+});
+
+// INVALID ROUTE 
+server.use((req, res, next) => {
+  next('Page Under Construction')
+})
+
+server.use((error, req, res, next) => {
+  res.status(500).json({
+    message : `ERROR`});
+});
+
+server.listen(3000, () => {
+  console.log(`I'm listening at port 3000`);
+})
