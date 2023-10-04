@@ -32,6 +32,20 @@ async function loginAdmin(req,res){
   }
 }
 
+async function resetLink(req, res) {
+  try {
+    const data = await authModel.resetLink(req.body);
+
+    if (data) {
+      res.json({message: `PASSWORD RESERT LINK SENT`, response: data})
+    } else {
+      res.jso({message:"INVALID INFORMATION"})
+    }
+  } catch (error) {
+    res.json({message: error.message})
+  }
+}
+
 async function resetAdmin(req,res) {
   try {
     const result = await authModel.reset(req.body);
@@ -116,6 +130,7 @@ module.exports = {
   registerAdmin,
   loginAdmin,
   resetAdmin,
+  resetLink,
   getAdmin,
   getStudent,
   getAllStudents,

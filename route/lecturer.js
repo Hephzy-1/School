@@ -1,13 +1,13 @@
 const express = require("express");
-const router = express.Router()
+const lecturerRouter = express.Router()
 const registerfn = require("../controllers/lecturer")
 
-router.post("/register",registerfn.registerLecturer);
-router.post("/login",registerfn.loginLecturer);
-router.put("/reset",registerfn.resetLecturer)
-router.get("/get-student/:role",registerfn.getStudent)
-router.get("/get-lecturer/:role",registerfn.getLecturer)
-router.delete("/drop-student/:role",registerfn.dropStudent)
+lecturerRouter.post("/register",registerfn.registerLecturer);
+lecturerRouter.post("/login",registerfn.loginLecturer);
+lecturerRouter.put("/reset",registerfn.resetLecturer)
+lecturerRouter.get("/get-student/:role",registerfn.getStudent)
+lecturerRouter.get("/get-lecturer/:role",registerfn.getLecturer)
+lecturerRouter.delete("/drop-student/:role",registerfn.dropStudent)
 
 
-module.exports = router;
+module.exports = lecturerRouter;

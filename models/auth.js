@@ -1,27 +1,39 @@
 const dB = require('../config/db'); // Import your existing database dB module
 
+async function checkUser(username, role) {
+  const query = `
+    SELECT COUNT(*) as count
+    FROM ${role}
+    WHERE username = ?
+  `;
+  const values = [username];
+  const result = (await dB).query(query, values);
+  return result.count;
+}
+
 async function register(payload) {
   const { username, password, role} = payload;
 
   try {
+    const hashedPassword = await hashPassword(password);
     const query = `
         INSERT INTO ${role}s (Username, Password)
         VALUES(?, ?)
       `;
     if (role === "admin") {
-      const values = [username, password];
+      const values = [username, hashedPassword];
       const result = (await dB).query(query,values)
 
       return result;
     } else if (role === "lecturer") {
 
-      const values = [username, password];
+      const values = [username, hashedPassword];
       const result = (await dB).query(query,values)
 
       return result;
     } else if (role === "student") {
 
-      const values = [username, password];
+      const values = [username, hashedPassword];
       const result =(await dB).query(query,values)
 
       return result;
@@ -36,27 +48,28 @@ async function register(payload) {
 
 async function login(payload) {
   const { username, password, role } = payload;
+
+  const hashedPassword = await hashPassword(password);
    const query = `
         SELECT * FROM ${role}s
         WHERE username = ? AND password = ?
       `;
-
   try {
     if (role === "admin") {
       
-      const values = [username, password];
+      const values = [username, hashedPassword];
       const result = (await dB).query(query, values);
 
       return result;
     } else if (role === "lecturer") {
 
-      const values = [username, password];
+      const values = [username, hashedPassword];
       const result = await   (await dB).query(query, values);
 
       return result;
     } else if (role === "student") {
 
-      const values = [username, password];
+      const values = [username, hashedPassword];
       const result = (await dB).query(query, values);
 
       return result;
@@ -69,8 +82,27 @@ async function login(payload) {
   }
 }
 
+const resetLink = async (payload) => {
+  const { username, role } = payload;
+
+  const userExists = await checkUser(username, role)
+
+  if (!userExists) {
+    return false;
+  }
+
+  try {
+    const response = await sendMail(username, config.SENDER_EMAIL)
+  } catch (error) {
+    throw Error (error.message)
+  }
+  
+}
+
 async function reset(payload) {
   const { username, password, role } = payload;
+
+  const hashedPassword = await hashPassword(password);
    const query = `
         UPDATE ${role}s
         SET password = ?
@@ -79,20 +111,20 @@ async function reset(payload) {
   try {
     if (role === "admin") {
       
-      const values = [password, username];
+      const values = [hashedPassword, username];
       const result = (await dB).query(query, values);
       return result;
 
     } 
     else if (role === "lecturer") {
 
-    const values = [ password, username];
+    const values = [hashedPassword, username];
     const result = (await dB).query(query, values);
     return result;
     } 
     else if (role === "student") {
 
-    const values = [password, username];
+    const values = [hashedPassword, username];
     const result = (await dB).query(query, values);
     return result;
   } else {
@@ -110,4 +142,10 @@ const Payload = {
   role: "admin",
 };
 
-module.exports = { register, login, reset };
+module.exports = { 
+  register, 
+  login,
+  reset, 
+  checkUser,
+  resetLink
+};

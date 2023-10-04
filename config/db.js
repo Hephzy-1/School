@@ -1,17 +1,22 @@
-const mysql = require('mysql2/promise');
+const  mysql = require('mysql2/promise');
+const config = require("./env.js");
 
-// create the connection to database
+// create the connection to the database
 const connection = mysql.createConnection({
-  host: 'localhost',
-  user: 'root',
-  database: 'Backend',
-  password:"Back-end.c0d1ng"
+  host: config.DB_HOST,
+  port: config.DB_PORT,
+  database: config.DB_NAME,
+  user: config.DB_USER,
+  password: config.DB_PASSWORD,
 });
 
-connection.then(()=>{
-  console.log("SERVER RUNNING")
-}).catch((error)=>{
-  console.log("ERROR ON DATABASE")
-})
+connection
+  .then((conn) => {
+    console.log("Connected to the database");
+    
+  })
+  .catch((error) => {
+    console.error("Error connecting to the database:", error);
+  });
 
 module.exports = connection;

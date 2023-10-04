@@ -1,13 +1,14 @@
 const express = require("express");
-const router = express.Router()
+const adminRouter = express.Router()
 const registerfn = require("../controllers/admin");
 
-router.post("/register",registerfn.registerAdmin);
-router.post("/login",registerfn.loginAdmin);
-router.put("/reset",registerfn.resetAdmin);
-router.get("/get-admin",registerfn.getAdmin);
-router.get("/get-student/:role",registerfn.getStudent);
-router.get("/getallstudent/:role",registerfn.getAllStudents);
-router.delete("/delete-student/:role",registerfn.dropStudent);
+adminRouter.post("/register",registerfn.registerAdmin);
+adminRouter.post("/login",registerfn.loginAdmin);
+adminRouter.put("/reset",registerfn.resetAdmin);
+adminRouter.post("/reset-link",registerfn.resetLink);
+adminRouter.get("/get-admin",registerfn.getAdmin);
+adminRouter.get("/get-student/:role",registerfn.getStudent);
+adminRouter.get("/getallstudent/:role",registerfn.getAllStudents);
+adminRouter.delete("/delete-student/:role",registerfn.dropStudent);
 
-module.exports = router;
+module.exports = adminRouter;

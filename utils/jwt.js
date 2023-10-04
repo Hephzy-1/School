@@ -1,27 +1,16 @@
 const jwt = require("jsonwebtoken");
+const { config } = require("../config/env.js");
 
-const secretKey = "nciojkcaa"
-function generateToken(payload) {
-  const generatedToken = jwt.sign(payload, secretKey, {noTimestamp: true})
+async function generateToken(payload) {
+  const generatedToken = jwt.sign(payload, config.ACCESSTOKEN_SECRET, { expiresIn: "1h" });
   return generatedToken;
 }
 
-async function verifyToken(token) {
-  try {
-    let decoded = await jwt.verify(token, secretKey)
-    return decoded;
-  } catch (error) {
-    throw Error('INVALID TOKEN')
-  }
+async function verifyToken(generatedToken) {
+  return jwt.verify(generatedToken, config.ACCESSTOKEN_SECRET);
 }
 
-let token = generateToken({ name: "Hephzy",courses:["CSC312","CSC313","CSC301"]});
-
-console.log(token);
-
-async function main() {
-    let payload = await verifyToken(token);
-    console.log(payload);
+module.exports = {
+  generateToken,
+  verifyToken
 }
-
-main();
