@@ -18,3 +18,5 @@ const sendMail = async (userEmail, myEmail) => {
     .then((response) => console.log("email sent"))
     .catch((err) => console.log(err.response.body));
 };
+
+module.exports = { sendMail }

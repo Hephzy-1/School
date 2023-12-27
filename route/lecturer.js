@@ -1,13 +1,10 @@
 const express = require("express");
 const lecturerRouter = express.Router()
-const registerfn = require("../controllers/lecturer")
+const { getLecturer, getStudent, dropStudent } = require("../controllers/lecturer")
 
-lecturerRouter.post("/register",registerfn.registerLecturer);
-lecturerRouter.post("/login",registerfn.loginLecturer);
-lecturerRouter.put("/reset",registerfn.resetLecturer)
-lecturerRouter.get("/get-student/:role",registerfn.getStudent)
-lecturerRouter.get("/get-lecturer/:role",registerfn.getLecturer)
-lecturerRouter.delete("/drop-student/:role",registerfn.dropStudent)
+lecturerRouter.get("/get-student/:role", getStudent)
+lecturerRouter.get("/get-lecturer/:role", getLecturer)
+lecturerRouter.delete("/drop-student/:role", dropStudent)
 
 
 module.exports = lecturerRouter;

@@ -1,55 +1,10 @@
-const authModel = require("../models/auth");
-const student = require('../models/student')
-
-// REGISTER AS STUDENT
-async function registerStudent(req,res){
-    try{
-        const result = await authModel.register(req.body)
-        res.status(200).json({message:"Created succesfully"})
-    }
-    catch(error){
-      res.status(500).json({ message: error.message })
-    }
-}
-
-// LOGIN AS STUDENT
-async function loginStudent(req,res){
-  try{
-    const result = await authModel.login(req.body);
-    console.log(result);
-    if(result){
-      return res.status(200).json({message:"LOGIN SUCESSFUL"})
-    }
-    else{
-      return res.status(400).json({message:"INVALID INFORMATION"})
-    }
-  }
-  catch(err){
-    res.status(500).json({ message: err.message })
-  }
-}
-
-// RESET PASSWORD
-async function resetStudent(req,res) {
-  try {
-    const result = await authModel.reset(req.body);
-    if(result){
-      res.status(200).json({message:"RESET PASSWORD SUCESSFUL"})
-    }
-    else{
-      res.status(400).json({message:"INVALID INFORMATION"})
-    }
- }
-  catch(err){
-    res.status(500).json({ message: err.message })
-  }    
-}
+const { enroll, getAcrossCourse, getCoursesEnrolled, dropCourse } = require('../models/student.js')
 
 // ENROLL IN A COURSE
 async function enrollCourse(req, res) {
   try {
     const role = req.params.role
-    const result = await student.enroll(req.body, role);
+    const result = await enroll(req.body, role);
     if (result) {
       res.status(200).json({ message: "COURSE REGISTERED SUCCESSFULLY" });
     } else if (!result) {
@@ -66,7 +21,7 @@ async function enrollCourse(req, res) {
 async function studentsAcrossCourse(req, res) {
   try {
     const role = req.params.role
-    const result = await student.getAcrossCourse(req.body, role);
+    const result = await getAcrossCourse(req.body, role);
     if (result) {
       res.status(200).json({
         message: `HERE ARE THE STUDENTS OFFERING ${req.body.course_code}`, data: result[0]});
@@ -82,7 +37,7 @@ async function studentsAcrossCourse(req, res) {
 async function getTheCoursesEnrolled(req, res) {
   try {
     const role = req.params.role;
-    const result = await student.getCoursesEnrolled(req.body, role);
+    const result = await getCoursesEnrolled(req.body, role);
     if (result) {
       res.status(200).json({
         message: "HERE ARE YOUR REGISTERED COURSES", data: result[0]});
@@ -98,7 +53,7 @@ async function getTheCoursesEnrolled(req, res) {
 async function dropACourse(req, res) {
   try {
     const role = req.params.role
-    const result = await student.dropCourse(req.body, role);
+    const result = await dropCourse(req.body, role);
     if (result) {
       res.status(200).json({ message: "COURSE DROPPED SUCCESSFULLY"});
     } else {
@@ -110,9 +65,6 @@ async function dropACourse(req, res) {
 }
 
 module.exports = {
-  registerStudent,
-  loginStudent,
-  resetStudent,
   enrollCourse,
   studentsAcrossCourse,
   getTheCoursesEnrolled,

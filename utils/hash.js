@@ -9,17 +9,37 @@ const bcrypt = require("bcrypt");
 //   bcrypt.hash(password, saltRounds, function (err, hash) {});
 // };
 
-const hashPassword = async (password) => {
-  return bcrypt.hash(password, 10)
+// const hashPassword = async (password) => {
+//   return bcrypt.hash(password, 10)
+// }
+
+// const passwordMatches = async (password, userPassword) => {
+//   return await bcrypt.compare(password, userPassword)
+// }
+
+// module.exports = {
+//   hashPassword,
+//   passwordMatches
+// }
+
+// ALSO HASHS PASSWORD 
+function hashPassword(password) {
+  return bcrypt.hashSync(password, 10)
 }
 
-const passwordMatches = async (password, userPassword) => {
-  return await bcrypt.compare(password, userPassword)
+// let hashed = hashPassword("Password")
+// console.log(hashed);
+
+function comparePassword(password, userPassword){
+  return bcrypt.compareSync(password, userPassword)
 }
 
 module.exports = {
   hashPassword,
-  passwordMatches
+  comparePassword
 }
+
+// console.log(comparePassword("Password", hashed));
+
 // let result = hashPassword("ADEJUMO");
 // console.log(result);
