@@ -5,6 +5,7 @@ const { sendMail } = require("../utils/mailSender.js");
 const { registerSchema, loginSchema } = require("../validation/authSchema.js")
 const { config } = require("../config/env.js");
 
+// Check If user exists
 async function checkUser(username, role) {
   const query = `
     SELECT COUNT(*) as count
@@ -16,6 +17,7 @@ async function checkUser(username, role) {
   return result;
 }
 
+// Register User
 async function register(payload) {
 
   const { error, value } = registerSchema.validate(payload);
@@ -54,6 +56,7 @@ async function register(payload) {
   
 }
 
+// Login User
 async function login(payload) {
 
   const { error, value } = loginSchema.validate(payload)
@@ -104,6 +107,7 @@ async function login(payload) {
   }
 }
 
+// Send reset link
 const resetLink = async (payload) => {
 
   const { username, role} = payload;
@@ -125,6 +129,7 @@ const resetLink = async (payload) => {
   }
 }
 
+// Reset password
 async function reset(payload) {
   const { username, password, role } = payload;
 
