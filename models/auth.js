@@ -49,7 +49,7 @@ async function register(payload) {
 
 
   } catch (err) {
-   throw Error(err.message);
+   throw Error(err);
   }
   
 }
@@ -58,7 +58,7 @@ async function login(payload) {
 
   const { error, value } = loginSchema.validate(payload)
   if (error) {
-    return error.message
+   throw error
   }
 
   const { username, password, role } = value;
@@ -100,8 +100,7 @@ async function login(payload) {
   
   } catch (err) {
     console.log(err);
-    return ({ message: err.message });
-
+    throw Error(err);
   }
 }
 
@@ -118,11 +117,11 @@ const resetLink = async (payload) => {
   try {
 
   const response =  await sendMail(username, config.SENDER_EMAIL)
-
   return response
   
   } catch (error) {
     console.log(error)
+    throw Error(error)
   }
 }
 
