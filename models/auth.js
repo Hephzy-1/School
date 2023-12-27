@@ -1,7 +1,7 @@
-const dB = require('../config/db'); // Import your existing database dB module
-const { hashPassword, comparePassword } = require("../utils/hash.js");
-const { generateToken } = require("../utils/jwt.js");
-const { sendMail } = require("../utils/mailSender.js");
+const dB = require('../config/db'); // Import existing database dB module
+const { hashPassword, comparePassword } = require("../utils/hash.js"); // Password hashing
+const { generateToken } = require("../utils/jwt.js"); // JWT token
+const send = require("../utils/mailSender.js"); // Send email
 const { registerSchema, loginSchema } = require("../validation/authSchema.js")
 const { config } = require("../config/env.js");
 
@@ -46,9 +46,10 @@ async function register(payload) {
       console.log(result[0], result);
       const { password, ...userData } = result;
       console.log(userData)
+      const response =  await send.registerEmail(email, config.SENDER_EMAIL)
+      console.log(response);
       return userData;
     }
-
 
   } catch (err) {
    throw Error(err);
@@ -120,7 +121,7 @@ const resetLink = async (payload) => {
 
   try {
 
-  const response =  await sendMail(username, config.SENDER_EMAIL)
+  const response =  await send.sendResetEmail(username, config.SENDER_EMAIL)
   return response
   
   } catch (error) {
@@ -144,6 +145,9 @@ async function reset(payload) {
       
       const values = [hashedPassword, username];
       const result = (await dB).query(query, values);
+      const response =  await send.passwordResetEmail(email, config.SENDER_EMAIL)
+      console.log(response);
+
       return result;
 
     } 
@@ -151,12 +155,16 @@ async function reset(payload) {
 
     const values = [hashedPassword, username];
     const result = (await dB).query(query, values);
+    const response =  await send.passwordResetEmail(email, config.SENDER_EMAIL)
+      console.log(response);
     return result;
     } 
     else if (role === "student") {
 
     const values = [hashedPassword, username];
     const result = (await dB).query(query, values);
+    const response =  await send.passwordResetEmail(email, config.SENDER_EMAIL)
+      console.log(response);
     return result;
   } else {
     throw Error('Invalid role')
