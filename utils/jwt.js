@@ -1,8 +1,8 @@
 const jwt = require("jsonwebtoken");
-const { config } = require("../config/env.js");
+const config = require("../config/env");
 
 async function generateToken(payload) {
-  const generatedToken = jwt.sign(payload, config.ACCESSTOKEN_SECRET, { expiresIn: "1h" });
+  const generatedToken = jwt.sign(payload, config.ACCESSTOKEN_SECRET);
   return generatedToken;
 }
 

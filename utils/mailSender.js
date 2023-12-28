@@ -1,5 +1,4 @@
 const nodemailer = require("nodemailer"); 
-const logger = require("../middlewares/logger");
 require("dotenv").config();
 
 // Create a transporter object
@@ -9,7 +8,7 @@ const transporter = nodemailer.createTransport({
     port: 465,
     secure: true,
     auth: {
-     user: process.env.Email,
+     user: process.env.EMAIL,
      pass: process.env.EmailPassword,
     },
    });
@@ -22,7 +21,7 @@ async function sendResetEmail(to, role, token) {
     to, // Recipient's email address
     subject: "RESET YOUR PASSWORD", // Email subject
     text: `Here is the link to reset your password
-    localhost:${process.env.PORT}/:${role}/forgot-password/${token}
+    localhost:${process.env.PORT}/${role}/reset/${token}
     NOTE: This link expires in ${process.env.EXPIRY}
     `, // Email body
   };
@@ -30,10 +29,8 @@ async function sendResetEmail(to, role, token) {
   try {
     // Send the email
     const info = await transporter.sendMail(mailOptions);
-    logger.info('Email sent:', info.response);
     return info.response;
   } catch (error) { 
-    logger.warn('Error:', error.message);
     throw Error(error);
   }
 }
@@ -51,10 +48,8 @@ async function registerEmail(from, to) {
   try {
     // Send the email
     const info = await transporter.sendMail(mailOptions);
-    logger.info('Email sent:', info.response);
     return info.response;
   } catch (error) { 
-    logger.warn('Error:', error.message);
     throw Error(error);
   }
 }
@@ -72,10 +67,8 @@ async function passwordResetEmail(to, text) {
   try {
     // Send the email
     const info = await transporter.sendMail(mailOptions);
-    logger.info('Email sent:', info.response);
     return info.response;
   } catch (error) { 
-    logger.warn('Error:', error.message);
     throw Error(error);
   }
 }
@@ -93,10 +86,8 @@ async function warningEmail(to) {
   try {
     // Send the email
     const info = await transporter.sendMail(mailOptions);
-    logger.info('Email sent:', info.response);
     return info.response;
   } catch (error) { 
-    logger.warn('Error:', error.message);
     throw Error(error);
   }
 }

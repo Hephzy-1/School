@@ -4,7 +4,7 @@ const { registration, loginUser, resetPassword, sendResetLink, logout } = requir
 
 authRouter.post("/register", registration);
 authRouter.post("/login", loginUser);
-authRouter.put("/reset", resetPassword);
+authRouter.put("/reset/:token", resetPassword);
 authRouter.put("/reset-link", sendResetLink);
 authRouter.delete("/logout",  logout)
 

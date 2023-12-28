@@ -1,17 +1,19 @@
 const { register, login, reset, resetLink } = require("../models/auth");
+const { comparePassword } = require("../utils/hash")
+const { generateToken } = require("../utils/jwt"); // JWT token
 
 // REGISTER
 async function registration(req,res){
   try{
-      const result = await register(req.body)
-      if (result) {
-        res.status(200).json({message:"Created succesfully"})
-      } else {
-        res.status(400).json({message: `Error registering`})
-      }
+    const result = await register(req.body)
+    if (result) {
+      return res.status(200).json({message:"Created succesfully"})
+    } else {
+      return res.status(400).json({message: `Error registering. User already exist`})
+    }
   }
   catch(error){
-    res.status(500).json({ message: error.message })
+    return res.status(500).json({ message: error.message })
   }
 }
 
@@ -19,16 +21,41 @@ async function registration(req,res){
 async function loginUser(req,res){
   try{
     const result = await login(req.body);
-    console.log(result);
-    if(result){
-      return res.status(200).json({message:"LOGIN SUCESSFUL"})
+
+    const user = result[0][0]
+    console.log(user);
+
+    if (!user) {
+      throw Error("This User doesn't exist");
     }
-    else{
-      return res.status(400).json({message:"INVALID INFORMATION"})
+
+    const isMatch = await comparePassword(req.body.password, user.password);
+    console.log(req.body.password);
+    console.log(user.password);
+    
+    console.log(isMatch);
+    
+
+    if (!isMatch) {
+      throw Error(`INVALID INFORMATION`);
+    } else {
+
+      const token = await generateToken(user.username);
+      console.log(token);
+
+      return res.cookie('token', token, {httpOnly: true, expires: new Date(Date.now() + 10000000)}).status(202).json({message: `LOGIN SUCCESSFUL`, token: token})
     }
-  }
-  catch(err){
-    res.status(500).json({ message: err.message })
+    
+    // Catch and handle errors
+  } catch(err){
+    if (err === "This User doesn't exist") {
+      res.status(404).json({message: `This User doesn't have a profile with us`});
+    } else if (err === "INVALID INFORMATION") {
+      res.status(401).json({message: `Invalid Password`})
+    }else {
+      res.status(500).json({ message: `INTERNAL SERVER ERROR`, error: err.message });
+    }
+    
   }
 }
 
@@ -54,18 +81,20 @@ async function sendResetLink(req, res, next) {
 }
 
 // RESET PASSWORD
-async function resetPassword(req,res) {
+async function resetPassword(req, res) {
   try {
-    const result = await reset(req.body);
+    
+    const result = await reset(req.body, req);
+
     if(result){
-      res.status(200).json({message:"RESET PASSWORD SUCESSFULL"})
+      return res.status(200).json({message:"PASSWORD UPDATE WAS SUCESSFUL"})
     }
     else{
-      res.status(400).json({message:"INVALID INFORMATION"})
+      return res.status(400).json({message:"INVALID INFORMATION"})
     }
  }
   catch(err){
-    res.status(500).json({ message: err.message })
+    return res.status(500).json({ message: err.message })
   }    
 }
 
