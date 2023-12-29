@@ -12,13 +12,11 @@ const authUser = async (req, res, next) => {
     } else {
         try {
             const decoded = await verifyToken(token);
-            const { email } = decoded;
-            req.user = email;
+            const { username } = decoded;
+            req.user = username;
 
-            logger.info(`Token worked`);
             next();
         } catch (error) {
-            logger.warn(`Invalid Token ${error}`);
             return  res.status(403).json({ message: "INVALID TOKEN", err: error.message});
         }
     }

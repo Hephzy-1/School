@@ -29,6 +29,7 @@ async function getStudent(payload, role) {
   }
 }
 
+// Get Lecturers In A Course
 async function getLecturer(payload, role) {
   try {
     const { course_code } = payload;
@@ -56,6 +57,7 @@ async function getLecturer(payload, role) {
   }
 }
 
+// Drop Student From A Course
 async function dropStudent(payload, role) {
   try {
     const { course_code, student } = payload;

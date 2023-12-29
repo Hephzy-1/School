@@ -30,8 +30,12 @@ function hashPassword(password) {
 // let hashed = hashPassword("Password")
 // console.log(hashed);
 
-function comparePassword(password, userPassword){
-  return bcrypt.compareSync(password, userPassword)
+// function comparePassword(password, userPassword){
+//   return await bcrypt.compareSync(password, userPassword)
+// }
+
+const comparePassword = async (password, userPassword) => {
+  return await bcrypt.compare(password, userPassword)
 }
 
 module.exports = {

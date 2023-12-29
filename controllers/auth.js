@@ -40,15 +40,16 @@ async function loginUser(req,res){
       throw Error(`INVALID INFORMATION`);
     } else {
 
-      const token = await generateToken(user.username);
+      const token = await generateToken(user);
       console.log(token);
 
-      return res.cookie('token', token, {httpOnly: true, expires: new Date(Date.now() + 10000000)}).status(202).json({message: `LOGIN SUCCESSFUL`, token: token})
+      return res.cookie('token', token, {httpOnly: true, expires: new Date(Date.now() + 1000 * 60 * 60)}).status(202).json({message: `LOGIN SUCCESSFUL`, token: token})
+
     }
     
     // Catch and handle errors
   } catch(err){
-    if (err === "This User doesn't exist") {
+    if (err == "This User doesn't exist") {
       res.status(404).json({message: `This User doesn't have a profile with us`});
     } else if (err === "INVALID INFORMATION") {
       res.status(401).json({message: `Invalid Password`})

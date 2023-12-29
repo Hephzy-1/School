@@ -14,7 +14,7 @@ async function checkUser(username, role) {
   `;
   const values = [username];
   const result = (await dB).query(query, values);
-  return result[0];
+  return result;
 }
 
 // Register User
@@ -73,8 +73,9 @@ async function login(payload) {
   try {
     // Check if user exists
     const userExists = await checkUser(username, role);
+    console.log(userExists)
     if (!userExists) {
-      throw new Error(`This User Doesn't Exist`);
+      throw Error(`This User Doesn't Exist`);
     }
 
     // Get user from database
@@ -114,7 +115,7 @@ const resetLink = async (payload) => {
 
   try {
 
-  const token = await generateToken(username)
+  const token = await generateToken(value)
   console.log(token);
 
   const response =  await send.sendResetEmail(username, role, token, config.SENDER_EMAIL)
@@ -145,7 +146,7 @@ async function reset(payload, req) {
       throw Error('Invalid token')
     } 
 
-    if (username === decoded) {
+    if (username === decoded.username) {
       if (password !== confirmpassword) {
         throw Error('Passwords have to match')
       }

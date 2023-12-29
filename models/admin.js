@@ -1,5 +1,5 @@
 const authModel = require('../models/auth');
-const dB = require('../config/db')
+const dB = require('../config/db');
 
 // GET PARTICULAR ADMIN
 async function getAdmin(payload) {
