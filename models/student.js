@@ -1,5 +1,4 @@
-const authModel = require('../models/auth')
-const dB = require('../config/db')
+const dB = require('../config/db');
 
 // ENROLL IN A COURSE
 async function enroll(payload, role) {
@@ -20,7 +19,7 @@ async function enroll(payload, role) {
       }
     } else {
       console.log("unauthorized");
-      return "UNATHORIZED";
+      throw Error ("UNAUTHORIZED");
     }
   } catch (err) {
     throw Error (err.message);
@@ -71,11 +70,11 @@ async function getCoursesEnrolled(payload, role) {
         return result;
       } else {
         console.log("NOT REGISTERED IN ANY COURSE");
-        return "NOT REGISTERED IN ANY COURSE";
+        return false;
       }
     } else {
       console.log("unauthorized");
-      return "UNATHORIZED";
+      throw Error ("UNAUTHORIZED");
     }
   } catch (err) {
     console.error(err.message);
@@ -83,6 +82,7 @@ async function getCoursesEnrolled(payload, role) {
   }
 }
 
+// DROP COURSES AS A STUDENT
 async function dropCourse(payload, role) {
   try {
     const { course_code, student } = payload;
@@ -96,7 +96,7 @@ async function dropCourse(payload, role) {
       return result;
     } else {
       console.log("unauthorized");
-      return "UNATHORIZED";
+      throw Error ("UNATHORIZED");
     }
   } catch (err) {
     console.error(err.message);

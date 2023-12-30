@@ -24,20 +24,20 @@ async function createCourse(payload, role) {
 
 // GET A PARTICULAR COURSE
 async function getCourse(payload, role) {
-  const { title} = payload;
+  const { code } = payload;
   try {
     if (role === "admin") {
       const query = `
       SELECT * FROM courses
-      WHERE title = ? 
+      WHERE code = ? 
       `;
 
-      const values = [title]
+      const values = [code]
       const result = (await dB).query(query, values)
       console.log(result)
       return result;
     } else {
-      return `You can't access this`
+      Error(`You can't access this`)
     }
     
   } catch (error) {
@@ -63,15 +63,15 @@ async function getAllCourse() {
 
 // DROP A COURSE
 async function dropCourse(payload, role) {
-  const { title } = payload
+  const { code } = payload
   try {
     if (role === "admin") {
       const query = `
       DELETE FROM courses
-      WHERE title = ?
+      WHERE code = ?
       `;
 
-      const values = [title];
+      const values = [code];
       const result = (await dB).query(query, values);
       return result;
     } else {

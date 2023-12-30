@@ -7,7 +7,8 @@ async function getAdmin(payload) {
   try {
     if (role === "admin") {
     const query = `
-    SELECT * FROM admins
+    SELECT id, username, registered_at
+    FROM admins
     WHERE username = ?
     `;
 
@@ -28,7 +29,7 @@ async function getStudent(payload, role) {
   try {
     if (role === "admin") {
     const query = `
-    SELECT * FROM students
+    SELECT id, username, registered_at FROM students
     WHERE username = ?
     `;
 

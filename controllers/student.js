@@ -7,13 +7,15 @@ async function enrollCourse(req, res) {
     const result = await enroll(req.body, role);
     if (result) {
       res.status(200).json({ message: "COURSE REGISTERED SUCCESSFULLY" });
-    } else if (!result) {
-      res.json(`No course with the code found`);
     } else {
-      res.json("YOU ARE NOT ALLOWED TO CARRY OUT THIS ACTION");
+      res.json(`No course with the code found`);
     }
   } catch (error) {
-    res.status(500).json({ message: error.message });
+    if (error === "UNAUTHORISED") {
+      res.json("YOU ARE NOT ALLOWED TO CARRY OUT THIS ACTION");
+    } else {
+      res.status(500).json({ message: error.message });
+    }
   }
 }
 
