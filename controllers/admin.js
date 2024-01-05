@@ -3,15 +3,31 @@ const adminModel = require('../models/admin')
 async function getAdmin(req,res) {
   try {
     const result = await adminModel.getAdmin(req.body);
-    console.log(result);
-    if(result){
-      res.status(200).json({message:"SUCESSFUL", data : result[0]})
+    console.log(result[0][0]);
+    if(result[0][0]){
+      res.status(200).json({message:"SUCCESSFUL", data : result[0][0]})
     }
     else{
       res.status(400).json({message:"INVALID INFORMATION"})
     }
   } catch (error) {
-    res.status(500).json({ message: err.message})
+    res.status(500).json({ message: error.message})
+  }
+}
+
+async function getLec(req,res) {
+  try {
+    const role = req.params.role
+    const result = await adminModel.getLecturer(req.body, role);
+    console.log(result);
+    if(result){
+      res.status(200).json({message:"SUCCESSFUL", data : result[0]})
+    }
+    else{
+      res.status(400).json({message:"INVALID INFORMATION"})
+    }
+  } catch (error) {
+    res.status(500).json({ message: error.message})
   }
 }
 
@@ -69,5 +85,6 @@ module.exports = {
   getAdmin,
   getStudent,
   getAllStudents,
-  dropStudent
+  dropStudent,
+  getLec
 };

@@ -1,4 +1,3 @@
-const authModel = require('../models/auth');
 const dB = require('../config/db');
 
 // GET PARTICULAR ADMIN
@@ -30,6 +29,28 @@ async function getStudent(payload, role) {
     if (role === "admin") {
     const query = `
     SELECT id, username, registered_at FROM students
+    WHERE username = ?
+    `;
+
+    const values = [username];
+    const result = (await dB).query(query, values);
+    return result;
+    } else {
+      return 'Error'
+    }
+  } catch (error) {
+    throw Error (error.message);
+  }
+}
+
+// GET PARTICULAR STUDENT
+async function getLecturer(payload, role) {
+  const {username} = payload;
+  try {
+    if (role === "admin") {
+    const query = `
+    SELECT id, username, registered_at 
+    FROM lecturers
     WHERE username = ?
     `;
 
@@ -84,6 +105,7 @@ async function getAllStudents() {
 module.exports = {
   getAdmin,
   getStudent,
+  getLecturer,
   getAllStudents,
   dropStudent
 }
