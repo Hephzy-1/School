@@ -18,7 +18,7 @@ async function getAdmin(payload) {
       return 'Error'
     }
   } catch (error) {
-    throw Error (error.message);
+    throw Error (error);
   }
 }
 
@@ -39,11 +39,11 @@ async function getStudent(payload, role) {
       return 'Error'
     }
   } catch (error) {
-    throw Error (error.message);
+    throw Error (error);
   }
 }
 
-// GET PARTICULAR STUDENT
+// GET PARTICULAR Lecturer
 async function getLecturer(payload, role) {
   const {username} = payload;
   try {
@@ -61,7 +61,7 @@ async function getLecturer(payload, role) {
       return 'Error'
     }
   } catch (error) {
-    throw Error (error.message);
+    throw Error (error);
   }
 }
 
@@ -81,7 +81,7 @@ async function dropStudent(payload, role) {
       return `Invalid role`;
     }
   } catch (error) {
-    throw Error(error.message)
+    throw Error(error)
   }
 }
 
@@ -98,7 +98,7 @@ async function getAllStudents() {
       return result;
     
   } catch (error) {
-    throw Error(error.message)
+    throw Error(error)
   }
 }
 

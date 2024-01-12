@@ -62,6 +62,8 @@ async function dropCourse(req,res) {
     console.log(result);
     if(!result){
       res.status(200).json({message:"Course has been dropped"})
+    } else {
+      res.status(400).json({message: `Error occurred while deleting`})
     }
   } catch (error) {
     res.status(500).json({ message: error.message})

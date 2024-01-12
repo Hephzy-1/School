@@ -78,7 +78,7 @@ async function dropCourse(payload, role) {
       return `Invalid role`;
     }
   } catch (error) {
-    throw Error(error.message)
+    throw Error(error)
   }
 }
 

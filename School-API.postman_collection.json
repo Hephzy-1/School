@@ -1,0 +1,2016 @@
+{
+	"info": {
+		"_postman_id": "ca85e2f5-e084-4293-bca7-3781b3156803",
+		"name": "School-API",
+		"description": "This is a school API which consista of API functions for Students, Admins and Lecturers.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "29627255"
+	},
+	"item": [
+		{
+			"name": "Lecturer",
+			"item": [
+				{
+					"name": "Get students in a course",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\t\"course_code\": \"ENG400\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3100/lecturer/get-student/lecturer",
+							"host": [
+								"localhost"
+							],
+							"port": "3100",
+							"path": [
+								"lecturer",
+								"get-student",
+								"lecturer"
+							]
+						},
+						"description": "### Get Students by Lecturer\n\nThis endpoint retrieves the list of students associated with a specific lecturer.\n\n**Request**\n\n- Method: GET\n- URL: `localhost:3100/lecturer/get-student/lecturer`\n- Headers: None\n- Body:\n    \n    ``` json\n      {\n          \"course_code\": \"\"\n      }\n    \n     ```\n    \n\n**Response**\n\n- Status: 200\n- Body:\n    \n    ``` json\n      {\n          \"message\": \"\",\n          \"data\": [\n              {\n                  \"student\": \"\"\n              }\n          ]\n      }\n    \n     ```\n    \n\n**Example Response**\n\n``` json\n{\n    \"message\": \"HERE ARE THE STUDENTS OFFERING THE COURSE\",\n    \"data\": [\n        {\n            \"student\": \"Jumo1\"\n        },\n        {\n            \"student\": \"Jumo1\"\n        }\n    ]\n}\n\n ```"
+					},
+					"response": [
+						{
+							"name": "Get students in a course",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n\t\"course_code\": \"ENG400\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:3100/lecturer/get-student/lecturer",
+									"host": [
+										"localhost"
+									],
+									"port": "3100",
+									"path": [
+										"lecturer",
+										"get-student",
+										"lecturer"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "104"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"68-uTGVetAeF5ij19OfvdxLgKjAHt4\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 12 Jan 2024 09:55:49 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"HERE ARE THE STUDENTS OFFERING THE COURSE\",\n    \"data\": [\n        {\n            \"student\": \"Jumo1\"\n        },\n        {\n            \"student\": \"Jumo1\"\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "Get lecturers in a course",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\t\"course_code\": \"ENG400\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3100/lecturer/get-lecturer/lecturer",
+							"host": [
+								"localhost"
+							],
+							"port": "3100",
+							"path": [
+								"lecturer",
+								"get-lecturer",
+								"lecturer"
+							]
+						},
+						"description": "# Get Lecturer\n\nThis endpoint retrieves the lecturer teaching a specific course.\n\n## Request\n\n### Endpoint\n\n``` http\nGET localhost:3100/lecturer/get-lecturer/lecturer\n\n ```\n\n### Query Parameters\n\n- `course_code` (string, required): The code of the course for which the lecturer is to be retrieved.\n    \n\n## Response\n\n- `message` (string): A message indicating the status of the request.\n- `data` (array): An array containing the details of the lecturer.\n    - `lecturers_id` (string): The ID of the lecturer teaching the specified course.\n\n### Example\n\n``` json\n{\n    \"message\": \"HERE ARE THE LECTURERS TEACHING THIS COURSE\",\n    \"data\": [\n        {\n            \"lecturers_id\": \"Jumo\"\n        }\n    ]\n}\n\n ```"
+					},
+					"response": [
+						{
+							"name": "Get lecturers in a course",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n\t\"course_code\": \"ENG400\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:3100/lecturer/get-lecturer/lecturer",
+									"host": [
+										"localhost"
+									],
+									"port": "3100",
+									"path": [
+										"lecturer",
+										"get-lecturer",
+										"lecturer"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "90"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"5a-SvaHo4lNShTMgwg16FIkBwBzpMk\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 12 Jan 2024 10:05:54 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"HERE ARE THE LECTURERS TEACHING THIS COURSE\",\n    \"data\": [\n        {\n            \"lecturers_id\": \"Jumo\"\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "Drop students from a course",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\t\"course_code\": \"ENG400\",\r\n\t\"student\": \"Jumo1\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3100/lecturer/drop-student/lecturer",
+							"host": [
+								"localhost"
+							],
+							"port": "3100",
+							"path": [
+								"lecturer",
+								"drop-student",
+								"lecturer"
+							]
+						},
+						"description": "This endpoint sends an HTTP DELETE request to localhost:3100/lecturer/drop-student/lecturer to drop a student from a specific course. The request should include a JSON payload in the raw request body with the keys \"course_code\" and \"student\".\n\n### Request Body\n\n- `course_code`: (string) The code of the course from which the student should be dropped.\n- `student`: (string) The identifier of the student to be dropped from the course.\n    \n\n### Response\n\nUpon successful execution, the endpoint returns a status code of 200 and a JSON object with a \"message\" key indicating the outcome of the operation.\n\n#### Example Response\n\n``` json\n{\n    \"message\": \"STUDENT DELETED SUCCESSFULLY\"\n}\n\n ```"
+					},
+					"response": [
+						{
+							"name": "Drop students from a course",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n\t\"course_code\": \"ENG400\",\r\n\t\"student\": \"Jumo1\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:3100/lecturer/drop-student/lecturer",
+									"host": [
+										"localhost"
+									],
+									"port": "3100",
+									"path": [
+										"lecturer",
+										"drop-student",
+										"lecturer"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "42"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"2a-FuxdUlMYA/vsiSKsPFReSnqtnaA\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 12 Jan 2024 10:05:14 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"STUDENT DELETED SUCCESSFULLY\"\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Student",
+			"item": [
+				{
+					"name": "enroll course",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\t\"course_code\": \"ENG403\",\r\n\t\"student\": \"Jumo1\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3100/student/enroll/admin",
+							"host": [
+								"localhost"
+							],
+							"port": "3100",
+							"path": [
+								"student",
+								"enroll",
+								"admin"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "enroll course",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n\t\"course_code\": \"ENG403\",\r\n\t\"student\": \"Jumo1\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:3100/student/enroll/student",
+									"host": [
+										"localhost"
+									],
+									"port": "3100",
+									"path": [
+										"student",
+										"enroll",
+										"student"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "44"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"2c-kEviLrmoFTsEnXUqWBAnRVScbRM\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 29 Dec 2023 09:37:46 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"COURSE REGISTERED SUCCESSFULLY\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Drop course",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\t\"course_id\": \"ENG403\",\r\n\t\"student\" : \"Jumo1\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3100/student/drop-enrolled-course/student",
+							"host": [
+								"localhost"
+							],
+							"port": "3100",
+							"path": [
+								"student",
+								"drop-enrolled-course",
+								"student"
+							]
+						},
+						"description": "# **Request**\n\nThis endpoint drops a course from the list of courses a student enrolled for. The course dropping is done by a student.\n\n# **Body**\n\n``` json\n{\n    \"course_id\": \"ENG403\",\n    \"student\" : \"Jumo1\"\n}\n\n ```\n\n# Response\n\n``` json\n{\n\t\"message\": \"COURSE DROPPED SUCCESSFULLY\"\n}\n ```"
+					},
+					"response": [
+						{
+							"name": "Drop course",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n\t\"course_id\": \"ENG403\",\r\n\t\"student\" : \"Jumo1\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:3100/student/drop-enrolled-course/student",
+									"host": [
+										"localhost"
+									],
+									"port": "3100",
+									"path": [
+										"student",
+										"drop-enrolled-course",
+										"student"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "41"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"29-dqdvKXYexNZKh8CXccAcmzvnU8w\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 29 Dec 2023 10:43:02 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"COURSE DROPPED SUCCESSFULLY\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Students Across A Course",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\t\"course_code\": \"ENG400\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3100/student/across-course/student",
+							"host": [
+								"localhost"
+							],
+							"port": "3100",
+							"path": [
+								"student",
+								"across-course",
+								"student"
+							]
+						},
+						"description": "This endpoint retrieves a list of students across a specific course.\n\n### Request\n\n- Method: GET\n- URL: `localhost:3100/student/across-course/student`\n    \n- Body:\n    \n    - course_code (string, required): The code of the course for which the students are to be retrieved.\n\n### Response\n\n- Status: 200 OK\n- Body:\n    \n    ```\n        {\n            \"message\": \"A message indicating the result of the request\",\n            \"data\": [\n                {\n                    \"student\": \"The name of a student\"\n                }\n            ]\n        }\n    \n     ```\n    \n\n#### Example Response\n\n``` json\n{\n    \"message\": \"HERE ARE THE STUDENTS OFFERING ENG400\",\n    \"data\": [\n        {\n            \"student\": \"Jumo1\"\n        },\n        {\n            \"student\": \"Jumo1\"\n        }\n    ]\n}\n\n ```"
+					},
+					"response": [
+						{
+							"name": "Students Across A Course",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n\t\"course_code\": \"ENG400\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:3100/student/across-course/student",
+									"host": [
+										"localhost"
+									],
+									"port": "3100",
+									"path": [
+										"student",
+										"across-course",
+										"student"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "100"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"64-MjNvb4vhYL1mlJaEMDW+1kn1H24\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 29 Dec 2023 10:41:18 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"HERE ARE THE STUDENTS OFFERING ENG400\",\n    \"data\": [\n        {\n            \"student\": \"Jumo1\"\n        },\n        {\n            \"student\": \"Jumo1\"\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "Courses Student Enrolled For",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\t\"student\": \"Jumo1\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3100/student/enrolled-course/student",
+							"host": [
+								"localhost"
+							],
+							"port": "3100",
+							"path": [
+								"student",
+								"enrolled-course",
+								"student"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Courses Student Enrolled For",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n\t\"student\": \"Jumo1\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:3100/student/enrolled-course/student",
+									"host": [
+										"localhost"
+									],
+									"port": "3100",
+									"path": [
+										"student",
+										"enrolled-course",
+										"student"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "193"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"c1-GsAJWSAldeS7a32DkD3PvRYkNEk\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 29 Dec 2023 10:40:13 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"HERE ARE YOUR REGISTERED COURSES\",\n    \"data\": [\n        {\n            \"course_id\": \"ENG400\"\n        },\n        {\n            \"course_id\": \"ENG400\"\n        },\n        {\n            \"course_id\": \"ENG403\"\n        },\n        {\n            \"course_id\": \"ENG403\"\n        },\n        {\n            \"course_id\": \"ENG403\"\n        },\n        {\n            \"course_id\": \"ENG403\"\n        }\n    ]\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Admin",
+			"item": [
+				{
+					"name": "Delete Course",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\t\"code\": \"GST201\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3100/courses/drop-course/admin",
+							"host": [
+								"localhost"
+							],
+							"port": "3100",
+							"path": [
+								"courses",
+								"drop-course",
+								"admin"
+							]
+						},
+						"description": "### DELETE /courses/drop-course/admin\n\nThis endpoint is used to delete a course for admin.\n\n#### Request Body\n\n- code (string, required): The code of the course to be deleted.\n    \n\n#### Response\n\n- Status: 400\n- message (string): A message indicating the reason for the failure."
+					},
+					"response": [
+						{
+							"name": "Delete Course",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n\t\"code\": \"GST201\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:3100/courses/drop-course/admin",
+									"host": [
+										"localhost"
+									],
+									"port": "3100",
+									"path": [
+										"courses",
+										"drop-course",
+										"admin"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "43"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"2b-F1sM9dPelSerEOqLSW+4aMU7qyc\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 12 Jan 2024 09:42:28 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Error occurred while deleting\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Create Course",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\t\"code\" : \"GST201\",\r\n\t\"unit\" : 3,\r\n\t\"lecturer\" : \"Jumo12\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3100/courses/register/admin",
+							"host": [
+								"localhost"
+							],
+							"port": "3100",
+							"path": [
+								"courses",
+								"register",
+								"admin"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Create Course",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n\t\"code\" : \"GST201\",\r\n\t\"unit\" : 3,\r\n\t\"lecturer\" : \"Jumo12\"\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:3100/courses/register/admin",
+									"host": [
+										"localhost"
+									],
+									"port": "3100",
+									"path": [
+										"courses",
+										"register",
+										"admin"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "34"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"22-tobUJ5fcV6GJ7uB2D90768ngXWk\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 28 Dec 2023 16:29:29 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Created successfully\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Drop student",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\t\"username\" : \"Jumo\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3100/admin/delete-student/admin",
+							"host": [
+								"localhost"
+							],
+							"port": "3100",
+							"path": [
+								"admin",
+								"delete-student",
+								"admin"
+							]
+						},
+						"description": "# Request\n\nThis endpoint drops a student from the school's database. It is used in such cases where the student has been rusticated.\n\n- URL: `localhost:3100/admin/delete-student/admin`\n    \n\n# Body\n\n``` json\n{\n    \"username\" : \"Jumo\"\n}\n\n ```\n\n# Response\n\n``` json\n{\n    \"message\": \"Student has been dropped\"\n}\n\n ```"
+					},
+					"response": [
+						{
+							"name": "Drop student",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n\t\"username\" : \"Jumo\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:3100/admin/delete-student/admin",
+									"host": [
+										"localhost"
+									],
+									"port": "3100",
+									"path": [
+										"admin",
+										"delete-student",
+										"admin"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "38"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"26-yOUzOd2vFDj8YhdvV49T2ezShlw\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 29 Dec 2023 10:52:11 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Student has been dropped\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Get Lecturer",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\t\"username\" : \"hzdeligh01@gmail.com\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3100/admin/get-lecturer/admin",
+							"host": [
+								"localhost"
+							],
+							"port": "3100",
+							"path": [
+								"admin",
+								"get-lecturer",
+								"admin"
+							]
+						},
+						"description": "This endpoint makes an HTTP GET request to fetch the lecturer details for the admin. The request should be sent to localhost:3100/admin/get-lecturer/admin.\n\n### Request\n\nThe request should include the following payload in the raw request body:\n\n``` json\n{\n    \"username\": \"\"\n}\n\n ```\n\n### Response\n\n- Status: 200\n- `message`: Indicates the status of the request, with possible values like \"SUCCESSFUL\" or an empty string.\n- `data`: An array containing the lecturer details.\n    \n\n#### Example Response\n\n``` json\n{\n    \"message\": \"SUCCESSFUL\",\n    \"data\": []\n}\n\n ```"
+					},
+					"response": [
+						{
+							"name": "Get Lecturer",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n\t\"username\" : \"hzdeligh01@gmail.com\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:3100/admin/get-lecturer/admin",
+									"host": [
+										"localhost"
+									],
+									"port": "3100",
+									"path": [
+										"admin",
+										"get-lecturer",
+										"admin"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "34"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"22-QgyCp6Bv1gexQnXHZIgHWvOT+Nk\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 12 Jan 2024 09:46:13 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"SUCCESSFUL\",\n    \"data\": []\n}"
+						}
+					]
+				},
+				{
+					"name": "Get Admin",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\t\"username\" : \"hzprincess01@gmail.com\",\r\n\t\"role\" : \"admin\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3100/admin/get-admin",
+							"host": [
+								"localhost"
+							],
+							"port": "3100",
+							"path": [
+								"admin",
+								"get-admin"
+							]
+						},
+						"description": "### Get Admin\n\nThis endpoint is used to retrieve admin information.\n\n**Request Payload**\n\n- `username` (string): The username of the admin.\n    \n- `role` (string): The role of the admin.\n    \n\n**Response**\n\n- Status: 200 OK\n    \n\n``` json\n{\n\t\"message\": \"SUCCESSFUL\",\n\t\"data\": {\n\t\t\"id\": 2,\n\t\t\"username\": \"hzprincess01@gmail.com\",\n\t\t\"registered_at\": \"2023-10-06T14:43:20.000Z\"\n\t}\n}\n\n ```"
+					},
+					"response": [
+						{
+							"name": "Get Admin",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n\t\"username\" : \"hzprincess01@gmail.com\",\r\n\t\"role\" : \"admin\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:3100/admin/get-admin",
+									"host": [
+										"localhost"
+									],
+									"port": "3100",
+									"path": [
+										"admin",
+										"get-admin"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "119"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"77-hxxaXAF3GYmbZvKDZr5yG6gxT5c\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 05 Jan 2024 15:00:54 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"SUCCESSFUL\",\n    \"data\": {\n        \"id\": 2,\n        \"username\": \"hzprincess01@gmail.com\",\n        \"registered_at\": \"2023-10-06T14:43:20.000Z\"\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Get student",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\t\"username\" : \"Jumo1\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3100/admin/get-student/admin",
+							"host": [
+								"localhost"
+							],
+							"port": "3100",
+							"path": [
+								"admin",
+								"get-student",
+								"admin"
+							]
+						},
+						"description": "# Request\n\nThis endpoint is used to get a student's profile\n\n- URL: `localhost:3100/admin/get-student/admin`\n    \n\n# Body\n\n``` json\n{\n    \"username\" : \"Jumo1\"\n}\n\n ```\n\n# Response\n\n``` json\n{\n    \"message\": \"SUCESSFUL\",\n    \"data\": [\n        {\n            \"id\": 1,\n            \"username\": \"Jumo1\",\n            \"registered_at\": \"2023-10-02T16:21:05.000Z\"\n        }\n    ]\n}\n\n ```"
+					},
+					"response": [
+						{
+							"name": "Get student",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n\t\"username\" : \"Jumo1\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:3100/admin/get-student/admin",
+									"host": [
+										"localhost"
+									],
+									"port": "3100",
+									"path": [
+										"admin",
+										"get-student",
+										"admin"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "103"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"67-wUvsGPYCn5alYN6mDbEnZihx8r0\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 29 Dec 2023 11:08:21 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"SUCESSFUL\",\n    \"data\": [\n        {\n            \"id\": 1,\n            \"username\": \"Jumo1\",\n            \"registered_at\": \"2023-10-02T16:21:05.000Z\"\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "get course",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\t\"code\" : \"GST201\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3100/courses/get-course/admin",
+							"host": [
+								"localhost"
+							],
+							"port": "3100",
+							"path": [
+								"courses",
+								"get-course",
+								"admin"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "get a course",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n\t\"code\" : \"GST201\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:3100/courses/get-course/admin",
+									"host": [
+										"localhost"
+									],
+									"port": "3100",
+									"path": [
+										"courses",
+										"get-course",
+										"admin"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "93"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"5d-akIb9Z8k6CHc7Z1a/T4maQYQzDE\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 29 Dec 2023 09:35:35 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Successful\",\n    \"data\": [\n        {\n            \"Id\": 8,\n            \"code\": \"GST201\",\n            \"Unit\": \"3\",\n            \"lecturers_id\": \"Jumo12\"\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "Get All Students",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/admin/getallcourse/admin",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"admin",
+								"getallcourse",
+								"admin"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "General",
+			"item": [
+				{
+					"name": "Register",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\t\"username\": \"beautyisme125@gmail.com\",\r\n\t\"userPassword\": \"abc2345rg\",\r\n\t\"role\": \"student\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3100/auth/register",
+							"host": [
+								"localhost"
+							],
+							"port": "3100",
+							"path": [
+								"auth",
+								"register"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Register",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n\t\"username\": \"beautyisme125@gmail.com\",\r\n\t\"userPassword\": \"abc2345rg\",\r\n\t\"role\": \"student\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:3100/auth/register",
+									"host": [
+										"localhost"
+									],
+									"port": "3100",
+									"path": [
+										"auth",
+										"register"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "33"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"21-jdjTa7SpqX+LsHHEezgTDWhLCeI\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 28 Dec 2023 00:08:34 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Created succesfully\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\t\"username\": \"hzprincess01@gmail.com\",\r\n\t\"password\": \"abcgrg\",\r\n\t\"role\": \"student\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3100/auth/login",
+							"host": [
+								"localhost"
+							],
+							"port": "3100",
+							"path": [
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Login",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n\t\"username\": \"hzprincess01@gmail.com\",\r\n\t\"password\": \"abcgrg\",\r\n\t\"role\": \"student\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:3100/auth/login",
+									"host": [
+										"localhost"
+									],
+									"port": "3100",
+									"path": [
+										"auth",
+										"login"
+									]
+								}
+							},
+							"status": "Accepted",
+							"code": 202,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Set-Cookie",
+									"value": "token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NCwidXNlcm5hbWUiOiJoenByaW5jZXNzMDFAZ21haWwuY29tIiwicGFzc3dvcmQiOiIkMmIkMTAkZExpdE42dHNCQnhKZVgxZEtISXY3T2ljVTBDaDguWlh3aFFtUGtLR0RHOHVldVJnd09tQU8iLCJyZWdpc3RlcmVkX2F0IjoiMjAyMy0xMC0wNlQxNDo0NjoyNS4wMDBaIiwiaWF0IjoxNzAzNzc5ODcwLCJleHAiOjE3MDM3ODM0NzB9.tx3DsJJvJiqbl70YBZR7klLn1EgjCovmIzOsWNUH40E; Path=/; Expires=Thu, 28 Dec 2023 17:11:10 GMT; HttpOnly"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "382"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"17e-frIt8NmzJ/9K5XaZEea5p+3BmI8\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 28 Dec 2023 16:11:10 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"LOGIN SUCCESSFUL\",\n    \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NCwidXNlcm5hbWUiOiJoenByaW5jZXNzMDFAZ21haWwuY29tIiwicGFzc3dvcmQiOiIkMmIkMTAkZExpdE42dHNCQnhKZVgxZEtISXY3T2ljVTBDaDguWlh3aFFtUGtLR0RHOHVldVJnd09tQU8iLCJyZWdpc3RlcmVkX2F0IjoiMjAyMy0xMC0wNlQxNDo0NjoyNS4wMDBaIiwiaWF0IjoxNzAzNzc5ODcwLCJleHAiOjE3MDM3ODM0NzB9.tx3DsJJvJiqbl70YBZR7klLn1EgjCovmIzOsWNUH40E\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Reset-link",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var template = `\r",
+									"<div style=\"text-align: center;\">\r",
+									"    <h2>{{response.message}}</h2>\r",
+									"</div>\r",
+									"`;\r",
+									"\r",
+									"function constructVisualizerPayload() {\r",
+									"    return {response: pm.response.json()};\r",
+									"}\r",
+									"\r",
+									"pm.visualizer.set(template, constructVisualizerPayload());"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\t\"username\": \"hzprincess01@gmail.com\",\r\n\t\"role\": \"student\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3100/auth/reset-link",
+							"host": [
+								"localhost"
+							],
+							"port": "3100",
+							"path": [
+								"auth",
+								"reset-link"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Reset-link",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n\t\"username\": \"hzprincess01@gmail.com\",\r\n\t\"role\": \"student\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:3100/auth/reset-link",
+									"host": [
+										"localhost"
+									],
+									"port": "3100",
+									"path": [
+										"auth",
+										"reset-link"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "136"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"88-A94dub+LRHus0j+5yCEIiYV9xsQ\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 28 Dec 2023 16:36:11 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"PASSWORD RESET LINK SENT\",\n    \"response\": \"250 2.0.0 OK  1703781370 s15-20020a05600c45cf00b0040d5d5ac69asm6839649wmo.36 - gsmtp\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Reset Password",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\t\"username\": \"hzprincess01@gmail.com\",\r\n\t\"password\": \"abcgrg\",\r\n\t\"confirmpassword\": \"abcgrg\",\r\n\t\"role\": \"student\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3100/auth/reset/eyJhbGciOiJIUzI1NiJ9.aHpwcmluY2VzczAxQGdtYWlsLmNvbQ.dAZCtvkI7QZnkQLTDtmCIOmivav0KKS2l-B69EbYWqE",
+							"host": [
+								"localhost"
+							],
+							"port": "3100",
+							"path": [
+								"auth",
+								"reset",
+								"eyJhbGciOiJIUzI1NiJ9.aHpwcmluY2VzczAxQGdtYWlsLmNvbQ.dAZCtvkI7QZnkQLTDtmCIOmivav0KKS2l-B69EbYWqE"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Reset Password",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n\t\"username\": \"hzprincess01@gmail.com\",\r\n\t\"password\": \"abcgrg\",\r\n\t\"confirmpassword\": \"abcgrg\",\r\n\t\"role\": \"student\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:3100/auth/reset/eyJhbGciOiJIUzI1NiJ9.aHpwcmluY2VzczAxQGdtYWlsLmNvbQ.dAZCtvkI7QZnkQLTDtmCIOmivav0KKS2l-B69EbYWqE",
+									"host": [
+										"localhost"
+									],
+									"port": "3100",
+									"path": [
+										"auth",
+										"reset",
+										"eyJhbGciOiJIUzI1NiJ9.aHpwcmluY2VzczAxQGdtYWlsLmNvbQ.dAZCtvkI7QZnkQLTDtmCIOmivav0KKS2l-B69EbYWqE"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "43"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"2b-cMZvsmUBJFg1Sfhr8YlOgbHuooM\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 28 Dec 2023 14:50:40 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"PASSWORD UPDATE WAS SUCESSFUL\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Logout",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:3100/auth/logout",
+							"host": [
+								"localhost"
+							],
+							"port": "3100",
+							"path": [
+								"auth",
+								"logout"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Logout",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "localhost:3100/auth/logout",
+									"host": [
+										"localhost"
+									],
+									"port": "3100",
+									"path": [
+										"auth",
+										"logout"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Set-Cookie",
+									"value": "token=; Path=/; Expires=Thu, 01 Jan 1970 00:00:00 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "31"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"1f-Qty5EnfGpjIlItQtEm8hsrSc8P4\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 28 Dec 2023 15:38:54 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"LOGOUT SUCCESSFUL\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Get All Courses",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.aHpwcmluY2VzczAxQGdtYWlsLmNvbQ.dAZCtvkI7QZnkQLTDtmCIOmivav0KKS2l-B69EbYWqE",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3100/courses/get-Allcourse",
+							"host": [
+								"localhost"
+							],
+							"port": "3100",
+							"path": [
+								"courses",
+								"get-Allcourse"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Get All Courses",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:3100/courses/get-Allcourse",
+									"host": [
+										"localhost"
+									],
+									"port": "3100",
+									"path": [
+										"courses",
+										"get-Allcourse"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "210"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"d2-eUs8vMXqaFlW8Y+u51X8yONDPjg\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 28 Dec 2023 16:11:58 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Successful\",\n    \"data\": [\n        {\n            \"Id\": 7,\n            \"code\": \"ENG201\",\n            \"Unit\": \"3\",\n            \"lecturers_id\": \"Jumo12\"\n        },\n        {\n            \"Id\": 2,\n            \"code\": \"ENG400\",\n            \"Unit\": \"1\",\n            \"lecturers_id\": \"Jumo\"\n        },\n        {\n            \"Id\": 1,\n            \"code\": \"ENG403\",\n            \"Unit\": \"1\",\n            \"lecturers_id\": \"Jumo1\"\n        }\n    ]\n}"
+						}
+					]
+				}
+			]
+		}
+	]
+}

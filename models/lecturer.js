@@ -25,7 +25,7 @@ async function getStudent(payload, role) {
     }
   } catch (err) {
     console.error(err.message);
-    throw err;
+    throw Error (err);
   }
 }
 
@@ -35,7 +35,7 @@ async function getLecturer(payload, role) {
     const { course_code } = payload;
     if (role == "lecturer") {
       const query = `
-        SELECT lecturer_id
+        SELECT lecturers_id
         FROM courses
         WHERE code = ?
         `;
@@ -53,7 +53,7 @@ async function getLecturer(payload, role) {
     }
   } catch (err) {
     console.error(err.message);
-    throw err;
+    throw Error (err);
   }
 }
 
@@ -81,7 +81,7 @@ async function dropStudent(payload, role) {
     }
   } catch (err) {
     console.error(err.message);
-    throw err;
+    throw Error (err);
   }
 }
 

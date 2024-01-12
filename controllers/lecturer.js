@@ -13,7 +13,7 @@ async function getLecturer(req,res) {
       res.status(400).json({message:"INVALID INFORMATION"})
     }
   } catch (error) {
-    res.status(500).json({ message: err.message})
+    res.status(500).json({ message: error.message})
   }
 }
 
@@ -37,10 +37,10 @@ async function getStudent(req,res) {
 // DROP A STUDENT FROM A COURSE
 async function dropStudent(req, res) {
   try {
-    const role = req.arams.role
+    const role = req.params.role
     const data = await lecturer.dropStudent(req.body, role);
     if (data) {
-      res.status(200).json({ message: "STUDENT DELETED SUCCESSFULLY", data });
+      res.status(200).json({ message: "STUDENT DELETED SUCCESSFULLY"});
     } else {
       res.json(`No student with the course code found`);
     }
